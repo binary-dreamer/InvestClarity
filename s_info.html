@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>InvestClarity</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link rel="stylesheet" href="lib/animate/animate.min.css"/>
+        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+		
+		<!-- investment info -->
+       
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .investment-card {
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .investment-card:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .investment-details {
+            display: none;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .expand-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .active-card {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+    </style>
+		
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="text-primary" style="font-size: 3rem; margin-right: 1rem;">₹</div> <!-- Rupee sign -->
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!-- Spinner End -->
+
+
+        <!-- Topbar Start -->
+        <div class="container-fluid topbar px-0 px-lg-4 bg-light py-2 d-none d-lg-block">
+            <div class="container">
+                <div class="row gx-0 align-items-center">
+                    <div class="col-lg-8 text-center text-lg-start mb-lg-0">
+                        <div class="d-flex flex-wrap">
+                            <div class="border-end border-primary pe-3">
+                                <a href="#" class="text-muted small"><i class="fas fa-map-marker-alt text-primary me-2"></i>Find A Location</a>
+                            </div>
+                            <div class="ps-3">
+                                <a href="mailto:example@gmail.com" class="text-muted small"><i class="fas fa-envelope text-primary me-2"></i>investclarity@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-lg-4 text-center text-lg-end">
+                        <div class="d-flex justify-content-end">
+                            <div class="d-flex border-end border-primary pe-3">
+                                <a class="btn p-0 text-primary me-3" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn p-0 text-primary me-3" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn p-0 text-primary me-3" href="#"><i class="fab fa-instagram"></i></a>
+                                <a class="btn p-0 text-primary me-0" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                            <div class="dropdown ms-3">
+                                <a href="#" class="dropdown-toggle text-dark" data-bs-toggle="dropdown"><small><i class="fas fa-globe-europe text-primary me-2"></i> English</small></a>
+                                <div class="dropdown-menu rounded">
+                                    <a href="#" class="dropdown-item">English</a>
+                                    <a href="#" class="dropdown-item">Bangla</a>
+                                    <a href="#" class="dropdown-item">French</a>
+                                    <a href="#" class="dropdown-item">Spanish</a>
+                                    <a href="#" class="dropdown-item">Arabic</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <!-- Topbar End -->
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light"> 
+                    <a href="#" class="navbar-brand p-0">
+                        <h1 class="text-primary mb-0"><i class="fab fa-slack me-2"></i><!--<img src="img\InvestClarity.png" alt="Logo">--> InvestClarity</h1>
+                        <!--<img src="img\logo.png" alt="Logo">-->
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav mx-0 mx-lg-auto">
+                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="about.html" class="nav-item nav-link">About</a>
+                            <a href="service.html" class="nav-item nav-link active">Services</a>
+                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <div class="nav-btn px-3">
+                                <button class="btn-search btn btn-primary btn-md-square rounded-circle flex-shrink-0" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search"></i></button>
+                                <a href="http://localhost/signin_login.php" class="btn btn-primary rounded-pill py-2 px-4 ms-3 flex-shrink-0">Log Out</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-none d-xl-flex flex-shrink-0 ps-4">
+                        <a href="#" class="btn btn-light btn-lg-square rounded-circle position-relative wow tada" data-wow-delay=".9s">
+                            <i class="fa fa-phone-alt fa-2x"></i>
+                            <div class="position-absolute" style="top: 7px; right: 12px;">
+                                <span><i class="fa fa-comment-dots text-secondary"></i></span>
+                            </div>
+                        </a>
+                        <div class="d-flex flex-column ms-3">
+                            <span>Call to Our Experts</span>
+                            <a href="tel:+ 0123 456 7890"><span class="text-dark">Free: +918866122683<br>+918160858798</span></a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Modal Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center bg-primary">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="btn bg-light border nput-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Search End -->
+
+
+
+        <!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Our Services</h4>
+                <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                  <li class="breadcrumb-item"><a href="service.html">Service</a></li>
+                    <li class="breadcrumb-item active text-primary">Information About Investment</li>
+                </ol>    
+            </div>
+        </div>
+        <!-- Header End -->
+		
+		<!-- Info Start -->
+		
+       <div class="container mt-5">
+        <h1 class="text-center mb-5">Information About Investment</h1>
+        <p class="text-center mb-4">Click on an investment option to learn more about it.</p>
+
+        <div id="investment-options">
+            <!-- Investment options will be dynamically added here -->
+        </div>
+    </div>
+
+    <script>
+        const investmentData = [
+            {
+                name: "Mutual Funds (SIP)",
+                overview: "A Systematic Investment Plan (SIP) is a method of investing in mutual funds where you invest a fixed amount of money at regular intervals (monthly, quarterly). It allows you to invest in various asset classes like equity, debt, or hybrid funds. SIPs are a disciplined way of investing, as they let you spread your investment over time, reducing the impact of market volatility.",
+                risk: "Varies based on fund type. Equity funds have higher risk and return potential, while debt funds are lower risk.",
+                ageGroup: ["Young: Aggressive growth", "Middle-aged: Balanced approach", "Seniors: Conservative funds"],
+                popularity: "High among working professionals and millennials.",
+                chartData: [40, 35, 25]
+            },
+            {
+                name: "Public Provident Fund (PPF)",
+                overview: "The Public Provident Fund (PPF) is a long-term savings scheme offered by the Government of India. It is popular for its guaranteed returns and tax benefits under Section 80C of the Income Tax Act. The PPF account has a tenure of 15 years, which can be extended, and offers compound interest.",
+                risk: "Low-risk, government-backed investment.",
+                ageGroup: ["Young: Long-term savings", "Middle-aged: Tax-saving", "Seniors: Safe investment"],
+                popularity: "Popular for risk-free returns and tax benefits.",
+                chartData: [10, 40, 50]
+            },
+            {
+                name: "National Pension System (NPS)",
+                overview: "The National Pension System (NPS) is a government-backed pension scheme designed to provide financial security after retirement. NPS allows individuals to contribute regularly to a pension account during their working life. On retirement, a part of the corpus can be withdrawn as a lump sum, while the remaining is used to purchase an annuity, ensuring a regular pension.",
+                risk: "Medium risk with a mix of equity and debt investments.",
+                ageGroup: ["Young: Retirement planning", "Middle-aged: Tax benefits", "Seniors: Pension income"],
+                popularity: "Growing popularity due to tax benefits and long-term returns.",
+                chartData: [30, 35, 35]
+            },
+            {
+                name: "Stocks and Equity Investments",
+                overview: "Stocks and Equity Investments involve buying shares of publicly traded companies, giving investors part ownership of the company. The value of these shares fluctuates based on the company’s performance and market conditions. Equities have historically provided high returns compared to other investment options, but they also carry significant risk.",
+                risk: "High risk with potential for high returns.",
+                ageGroup: ["Young: High growth potential", "Middle-aged: Balanced portfolio", "Seniors: Limited exposure"],
+                popularity: "Popular among risk-tolerant investors seeking high returns.",
+                chartData: [60, 30, 10]
+            },
+            {
+                name: "Fixed Deposits (FDs) and Recurring Deposits (RDs)",
+                overview: "A *Fixed Deposit (FD)* is a savings instrument offered by banks and financial institutions where you invest a lump sum for a fixed tenure at a predetermined interest rate. It’s a popular option among investors looking for safe, predictable returns. FDs offer interest rates that are usually higher than regular savings accounts and the principal is returned with interest at maturity. And, A *Recurring Deposit (RD)* allows individuals to invest small amounts of money regularly over a fixed period. RDs are similar to FDs in that they offer a fixed rate of interest, but unlike FDs, RDs allow you to invest on a monthly basis. At the end of the tenure, the principal and interest are returned to the investor. RDs are ideal for those who want to save consistently without making a lump sum investment.",
+                risk: "Low risk with guaranteed returns.",
+                ageGroup: ["Young: Short-term goals", "Middle-aged: Stable returns", "Seniors: Regular income"],
+                popularity: "Very popular among risk-averse investors.",
+                chartData: [10, 45, 45]
+            },
+            {
+                name: "Real Estate",
+                overview: "Real Estate involves the purchase, ownership, management, rental, or sale of land, buildings, or properties for profit. It’s considered one of the largest and most lucrative investment classes. Real estate investments can provide both rental income and capital appreciation over time.",
+                risk: "Medium to high risk, depending on location and market conditions.",
+                ageGroup: ["Young: Long-term investment", "Middle-aged: Diversification", "Seniors: Rental income"],
+                popularity: "Popular in developing economies with rising property values.",
+                chartData: [40, 30, 30]
+            },
+            {
+                name: "Gold and Precious Metals",
+                overview: "Gold and Precious Metals like silver and platinum are tangible assets that have been historically used as a store of value. Gold, in particular, is considered a hedge against inflation and economic downturns. Precious metals can be bought in various forms, including jewelry, coins, bars, or even financial products like gold ETFs (Exchange-Traded Funds).",
+                risk: "Medium risk, often seen as a hedge against inflation.",
+                ageGroup: ["Young: Portfolio diversification", "Middle-aged: Wealth preservation", "Seniors: Safe haven"],
+                popularity: "Traditionally popular, especially in Asian countries.",
+                chartData: [30, 40, 30]
+            },
+            {
+                name: "Employee Provident Fund (EPF) and Voluntary Provident Fund (VPF)",
+                overview: "The *Employee Provident Fund (EPF)* is a government-backed retirement savings scheme in India where both the employee and employer contribute a portion of the employee’s salary to the fund. *Voluntary Provident Fund (VPF)* is an extension of EPF, where employees can voluntarily contribute more than the mandated amount to boost their retirement savings.",
+                risk: "Low risk with government-backed returns.",
+                ageGroup: ["Young: Retirement savings", "Middle-aged: Tax benefits", "Seniors: Retirement corpus"],
+                popularity: "Widely used by salaried individuals.",
+                chartData: [15, 40, 45]
+            },
+            {
+                name: "Bonds and Debentures",
+                overview: "Bonds and Debentures are debt instruments issued by governments or companies to raise capital. When you buy a bond or debenture, you are lending money to the issuer in exchange for regular interest payments and the return of the principal at maturity. Bonds are seen as a safer alternative to stocks, especially government bonds.",
+                risk: "Low to medium risk, depending on the issuer.",
+                ageGroup: ["Young: Balanced portfolio", "Middle-aged: Stable income", "Seniors: Regular interest income"],
+                popularity: "Popular among conservative investors seeking regular income.",
+                chartData: [20, 35, 45]
+            },
+            {
+                name: "Unit-Linked Insurance Plans (ULIPs)",
+                overview: "Unit-Linked Insurance Plans (ULIPs) are financial products that offer both insurance and investment components. A part of the premium you pay is used to provide life insurance coverage, while the remaining is invested in equity or debt funds, depending on your choice.",
+                risk: "Medium to high risk, depending on chosen fund type.",
+                ageGroup: ["Young: Insurance with investment", "Middle-aged: Tax planning", "Seniors: Limited suitability"],
+                popularity: "Moderate popularity due to combined benefits.",
+                chartData: [35, 30, 35]
+            },
+            {
+                name: "Senior Citizens Savings Scheme (SCSS)",
+                overview: "The *Senior Citizens Savings Scheme (SCSS)* is a government-backed savings scheme for individuals aged 60 years and above. It offers a safe and regular income stream along with tax benefits. The scheme has a tenure of 5 years, extendable by an additional 3 years.",
+                risk: "Low risk with guaranteed returns.",
+                ageGroup: ["Seniors: Regular income and tax benefits"],
+                popularity: "Very popular among senior citizens.",
+                chartData: [10, 45, 45]
+            },
+            {
+                name: "Post Office Monthly Income Scheme (POMIS)",
+                overview: "The Post Office Monthly Income Scheme (POMIS) is a savings scheme offered by the Indian Postal Service. It provides a steady monthly income with a tenure of 5 years. This scheme is open to all individuals and is often used by retirees to generate a regular income.",
+                risk: "Low risk with guaranteed monthly returns.",
+                ageGroup: ["Middle-aged: Regular income", "Seniors: Stable monthly income"],
+                popularity: "Popular among risk-averse investors seeking regular income.",
+                chartData: [15, 40, 45]
+            },
+            {
+                name: "Pradhan Mantri Vaya Vandana Yojana (PMVVY)",
+                overview: "The Pradhan Mantri Vaya Vandana Yojana (PMVVY) is a pension scheme for senior citizens (60+ years) launched by the Government of India. It offers a fixed pension for 10 years, depending on the investment amount. It can be purchased through Life Insurance Corporation (LIC).",
+                risk: "Low risk with assured returns.",
+                ageGroup: ["Seniors: Guaranteed pension income"],
+                popularity: "Growing popularity among senior citizens.",
+                chartData: [10, 40, 50]
+            },
+            {
+                name: "Monthly Income Plans (MIPs)",
+                overview: "Monthly Income Plans (MIPs) are mutual fund schemes that invest in a mix of debt and equity instruments to provide regular monthly income to investors. Although MIPs aim to offer monthly payouts, the returns are not guaranteed and depend on the performance of the underlying assets.",
+                risk: "Low to medium risk with a mix of debt and equity.",
+                ageGroup: ["Middle-aged: Regular income", "Seniors: Income with some growth"],
+                popularity: "Moderate popularity among income-seeking investors.",
+                chartData: [25, 35, 40]
+            },
+            {
+                name: "Immediate Annuities",
+                overview: "Immediate Annuities are insurance products that provide a guaranteed income stream starting immediately after a lump-sum investment. The annuity continues for a specified period or the lifetime of the policyholder, depending on the plan chosen.",
+                risk: "Low risk with assured regular payouts.",
+                ageGroup: ["Seniors: Lifelong regular income"],
+                popularity: "Growing popularity for retirement income planning.",
+                chartData: [15, 35, 50]
+            }
+        ];
+
+        function createInvestmentCards() {
+            const container = document.getElementById('investment-options');
+            
+            investmentData.forEach((investment, index) => {
+                const card = document.createElement('div');
+                card.className = 'investment-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <h5 class="card-title">${investment.name}</h5>
+                        <button class="expand-btn" onclick="toggleDetails(${index}, this)">▼</button>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">${investment.overview}</p>
+                    </div>
+                    <div class="investment-details" id="details-${index}">
+                        <!-- Details will be populated here -->
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function toggleDetails(index, button) {
+            const detailsContainer = document.getElementById(`details-${index}`);
+            const allCards = document.querySelectorAll('.investment-card');
+            const allButtons = document.querySelectorAll('.expand-btn');
+
+            if (detailsContainer.style.display !== 'none') {
+                detailsContainer.style.display = 'none';
+                allCards[index].classList.remove('active-card');
+                button.textContent = '▼';
+            } else {
+                const investment = investmentData[index];
+                detailsContainer.innerHTML = `
+                    <p><strong>Risk:</strong> ${investment.risk}</p>
+                    <p><strong>Age Group:</strong></p>
+                    <ul>
+                        ${investment.ageGroup.map(group => `<li>${group}</li>`).join('')}
+                    </ul>
+                    <p><strong>Popularity:</strong> ${investment.popularity}</p>
+                    <div class="chart-container">
+                        <canvas id="chart-${index}"></canvas>
+                    </div>
+                `;
+                detailsContainer.style.display = 'block';
+                createChart(index);
+
+                allCards.forEach((card, i) => {
+                    if (i === index) {
+                        card.classList.add('active-card');
+                    } else {
+                        card.classList.remove('active-card');
+                    }
+                });
+
+                allButtons.forEach((btn, i) => {
+                    btn.textContent = i === index ? '▲' : '▼';
+                });
+            }
+        }
+
+        function createChart(index) {
+            const ctx = document.getElementById(`chart-${index}`).getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Risk', 'Popularity', 'Benefits'],
+                    datasets: [{
+                        data: investmentData[index].chartData,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(75, 192, 192, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Investment Factors'
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            createInvestmentCards();
+        });
+    </script>
+		
+		<!-- Info End-->
+
+		
+		
+		 <!-- Footer Start -->
+		<div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-xl-9">
+                        <div class="mb-5">
+                            <div class="row g-4">
+                                <div class="col-md-6 col-lg-6 col-xl-5">
+                                    <div class="footer-item">
+                                        <a href="index.html" class="p-0">
+                                            <h3 class="text-white"><i class="fab fa-slack me-3"></i> InvestClarity</h3>
+                                           <p class="text-white mb-4">Thank you for visiting InvestClarity! We hope our platform helps you make informed and confident investment decisions.</p>
+                                        <div class="footer-btn d-flex">
+                                            <a class="btn btn-md-square rounded-circle me-3" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                            <a class="btn btn-md-square rounded-circle me-3" href="https://x.com/?lang=en"><i class="fab fa-twitter"></i></a>
+                                            <a class="btn btn-md-square rounded-circle me-3" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                                            <a class="btn btn-md-square rounded-circle me-0" href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-3">
+                                    <div class="footer-item">
+                                        <h4 class="text-white mb-4">Useful Links</h4>
+                                        <a href="about.html"><i class="fas fa-angle-right me-2"></i> About Us</a>
+                                        <a href="index.html"><i class="fas fa-angle-right me-2"></i> Features</a>
+                                        <a href="service.html"><i class="fas fa-angle-right me-2"></i> Services</a>                                     
+                                        <a href="contact.html"><i class="fas fa-angle-right me-2"></i> Contact</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-4">
+                                    <div class="footer-item">
+                                        <h4 class="mb-4 text-white">Service Icons</h4>
+                                        <div class="row g-3">
+                                            <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\diagram.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\diagram.png" data-lightbox="footerInstagram-1" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                           <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\diversity.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\diversity.png" data-lightbox="footerInstagram-2" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                            <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\secured.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\secured.png" data-lightbox="footerInstagram-3" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                            <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\rupees.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\rupees.png" data-lightbox="footerInstagram-4" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                            <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\debt.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\debt.png" data-lightbox="footerInstagram-5" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                           <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\people.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\people.png" data-lightbox="footerInstagram-6" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                     
+                    </div>
+                    
+                    <div class="col-xl-3">
+                        <div class="footer-item">
+                            <div class="col-lg-4">
+                <div class="message-form">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="8d7bc842-68d2-4b07-ad49-d1e5ebca1c4c">
+                        <h3 style="color:white">Please mention your feedback here</h3>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="message" placeholder="Your feedback or quries" required>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <!-- Footer End -->
+        
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6 text-center text-md-end mb-md-0">
+                        <span class="text-body"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>InvestClarity</a>, All right reserved.</span>
+                    </div>
+                    <div class="col-md-6 text-center text-md-start text-body">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        
+        <!-- JavaScript Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+    </body>
+
+</html>

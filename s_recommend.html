@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>InvestClarity</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link rel="stylesheet" href="lib/animate/animate.min.css"/>
+        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+		
+		<!-- invest Recommendation-->
+		
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="text-primary" style="font-size: 3rem; margin-right: 1rem;">₹</div> <!-- Rupee sign -->
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!-- Spinner End -->
+
+
+        <!-- Topbar Start -->
+        <div class="container-fluid topbar px-0 px-lg-4 bg-light py-2 d-none d-lg-block">
+            <div class="container">
+                <div class="row gx-0 align-items-center">
+                    <div class="col-lg-8 text-center text-lg-start mb-lg-0">
+                        <div class="d-flex flex-wrap">
+                            <div class="border-end border-primary pe-3">
+                                <a href="#" class="text-muted small"><i class="fas fa-map-marker-alt text-primary me-2"></i>Find A Location</a>
+                            </div>
+                            <div class="ps-3">
+                                <a href="mailto:example@gmail.com" class="text-muted small"><i class="fas fa-envelope text-primary me-2"></i>investclarity@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-lg-4 text-center text-lg-end">
+                        <div class="d-flex justify-content-end">
+                            <div class="d-flex border-end border-primary pe-3">
+                                <a class="btn p-0 text-primary me-3" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn p-0 text-primary me-3" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn p-0 text-primary me-3" href="#"><i class="fab fa-instagram"></i></a>
+                                <a class="btn p-0 text-primary me-0" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                            <div class="dropdown ms-3">
+                                <a href="#" class="dropdown-toggle text-dark" data-bs-toggle="dropdown"><small><i class="fas fa-globe-europe text-primary me-2"></i> English</small></a>
+                                <div class="dropdown-menu rounded">
+                                    <a href="#" class="dropdown-item">English</a>
+                                    <a href="#" class="dropdown-item">Bangla</a>
+                                    <a href="#" class="dropdown-item">French</a>
+                                    <a href="#" class="dropdown-item">Spanish</a>
+                                    <a href="#" class="dropdown-item">Arabic</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <!-- Topbar End -->
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light"> 
+                    <a href="#" class="navbar-brand p-0">
+                        <h1 class="text-primary mb-0"><i class="fab fa-slack me-2"></i><!--<img src="img\InvestClarity.png" alt="Logo">--> InvestClarity</h1>
+                        <!--<img src="img\logo.png" alt="Logo">-->
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav mx-0 mx-lg-auto">
+                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="about.html" class="nav-item nav-link">About</a>
+                            <a href="service.html" class="nav-item nav-link active">Services</a>
+                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <div class="nav-btn px-3">
+                                <button class="btn-search btn btn-primary btn-md-square rounded-circle flex-shrink-0" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search"></i></button>
+                                <a href="http://localhost/signin_login.php" class="btn btn-primary rounded-pill py-2 px-4 ms-3 flex-shrink-0">Log Out</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-none d-xl-flex flex-shrink-0 ps-4">
+                        <a href="#" class="btn btn-light btn-lg-square rounded-circle position-relative wow tada" data-wow-delay=".9s">
+                            <i class="fa fa-phone-alt fa-2x"></i>
+                            <div class="position-absolute" style="top: 7px; right: 12px;">
+                                <span><i class="fa fa-comment-dots text-secondary"></i></span>
+                            </div>
+                        </a>
+                        <div class="d-flex flex-column ms-3">
+                            <span>Call to Our Experts</span>
+                            <a href="tel:+ 0123 456 7890"><span class="text-dark">Free: +918866122683<br>+918160858798</span></a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Modal Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center bg-primary">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="btn bg-light border nput-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Search End -->
+
+
+
+        <!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Our Services</h4>
+                <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="service.html">Service</a></li>
+					<li class="breadcrumb-item active text-primary">Investment Recommendation</li>
+                </ol>    
+            </div>
+        </div>
+        <!-- Header End -->
+
+
+
+			<!-- Investment Recommendation Section Start -->
+				<br> <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" align="center">Investment Recommendation System</h3>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="investmentAmount" class="form-label">Investment Amount (INR)</label>
+                        <input type="number" class="form-control" id="investmentAmount" name="investmentAmount">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="number" class="form-control" id="age" name="age">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="riskTolerance" class="form-label">Risk Tolerance</label>
+                        <select class="form-select" id="riskTolerance" name="riskTolerance">
+                            <option value="">Select risk tolerance</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="investmentHorizon" class="form-label">Investment Horizon</label>
+                        <select class="form-select" id="investmentHorizon" name="investmentHorizon">
+                            <option value="">Select investment horizon</option>
+                            <option value="1">0-1 years</option>
+                            <option value="3">1-3 years</option>
+                            <option value="5">3-5 years</option>
+                            <option value="10">5-10 years</option>
+                            <option value="20">10+ years</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="numberOfInvestments" class="form-label">Number of Investments</label>
+                        <input type="number" class="form-control" id="numberOfInvestments" name="numberOfInvestments">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select class="form-select" id="gender" name="gender">
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary mt-4" onclick="calculateRecommendations()">Generate Recommendations</button>
+
+                <div id="recommendationsSection" class="mt-5" style="display: none;">
+                    <h3 class="h5 mb-3">Investment Recommendations</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="recommendationsTable">
+                            <thead>
+                                <tr>
+                                    <th>Investment</th>
+                                    <th class="text-end">Percentage</th>
+                                    <th class="text-end">Amount (INR)</th>
+                                    <th>Risk</th>
+                                    <th>Popularity</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4">
+                        <canvas id="recommendationsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<br><br><br>
+
+    <script>
+    let recommendationsChart; // Global variable to store the chart instance
+
+    function calculateRecommendations() {
+        const inputs = {
+            investmentAmount: document.getElementById('investmentAmount').value,
+            age: document.getElementById('age').value,
+            riskTolerance: document.getElementById('riskTolerance').value,
+            investmentHorizon: document.getElementById('investmentHorizon').value,
+            numberOfInvestments: document.getElementById('numberOfInvestments').value,
+            gender: document.getElementById('gender').value
+        };
+
+        const ageNum = parseInt(inputs.age);
+        const horizonNum = parseInt(inputs.investmentHorizon);
+        const amount = parseFloat(inputs.investmentAmount);
+        const numInvestments = parseInt(inputs.numberOfInvestments);
+
+        let allocations = [
+            { name: 'Mutual Funds (SIP)', percentage: 0, risk: 'Medium', popularity: 'High' },
+            { name: 'Public Provident Fund (PPF)', percentage: 0, risk: 'Low', popularity: 'High' },
+            { name: 'National Pension System (NPS)', percentage: 0, risk: 'Medium', popularity: 'Medium' },
+            { name: 'Stocks and Equity Investments', percentage: 0, risk: 'High', popularity: 'High' },
+            { name: 'Fixed Deposits (FDs) and RDs', percentage: 0, risk: 'Low', popularity: 'High' },
+            { name: 'Real Estate', percentage: 0, risk: 'Medium', popularity: 'Medium' },
+            { name: 'Gold and Precious Metals', percentage: 0, risk: 'Medium', popularity: 'Medium' },
+            { name: 'EPF and VPF', percentage: 0, risk: 'Low', popularity: 'High' },
+            { name: 'Bonds and Debentures', percentage: 0, risk: 'Low', popularity: 'Medium' },
+            { name: 'ULIPs', percentage: 0, risk: 'Medium', popularity: 'Medium' },
+            { name: 'SCSS', percentage: 0, risk: 'Low', popularity: 'Medium' },
+            { name: 'POMIS', percentage: 0, risk: 'Low', popularity: 'Medium' },
+            { name: 'PMVVY', percentage: 0, risk: 'Low', popularity: 'Low' },
+            { name: 'Monthly Income Plans (MIPs)', percentage: 0, risk: 'Low', popularity: 'Medium' },
+            { name: 'Immediate Annuities', percentage: 0, risk: 'Low', popularity: 'Low' }
+        ];
+
+        // Adjust allocations based on risk tolerance
+        if (inputs.riskTolerance === 'high') {
+            allocations[0].percentage = 30; // Mutual Funds
+            allocations[3].percentage = 30; // Stocks
+            allocations[2].percentage = 15; // NPS
+            allocations[5].percentage = 10; // Real Estate
+            allocations[6].percentage = 5; // Gold
+            allocations[1].percentage = 5; // PPF
+            allocations[4].percentage = 5; // FDs
+        } else if (inputs.riskTolerance === 'medium') {
+            allocations[0].percentage = 25; // Mutual Funds
+            allocations[1].percentage = 15; // PPF
+            allocations[2].percentage = 15; // NPS
+            allocations[3].percentage = 15; // Stocks
+            allocations[4].percentage = 10; // FDs
+            allocations[6].percentage = 10; // Gold
+            allocations[8].percentage = 10; // Bonds
+        } else {
+            allocations[1].percentage = 20; // PPF
+            allocations[4].percentage = 20; // FDs
+            allocations[7].percentage = 15; // EPF and VPF
+            allocations[8].percentage = 15; // Bonds
+            allocations[0].percentage = 10; // Mutual Funds
+            allocations[10].percentage = 10; // SCSS
+            allocations[11].percentage = 10; // POMIS
+        }
+
+        // Adjust based on age and investment horizon
+        if (ageNum > 50 || horizonNum <= 5) {
+            allocations[3].percentage = Math.max(0, allocations[3].percentage - 10); // Reduce Stocks
+            allocations[4].percentage += 5; // Increase FDs
+            allocations[8].percentage += 5; // Increase Bonds
+        } else if (ageNum < 30 && horizonNum > 10) {
+            allocations[3].percentage += 10; // Increase Stocks
+            allocations[0].percentage += 5; // Increase Mutual Funds
+            allocations[4].percentage = Math.max(0, allocations[4].percentage - 10); // Reduce FDs
+            allocations[8].percentage = Math.max(0, allocations[8].percentage - 5); // Reduce Bonds
+        }
+
+        // Adjust based on gender (example adjustment)
+        if (inputs.gender === 'female') {
+            allocations[1].percentage += 5; // Increase PPF
+            allocations[6].percentage += 5; // Increase Gold
+            allocations[3].percentage = Math.max(0, allocations[3].percentage - 10); // Reduce Stocks
+        }
+
+        // Calculate amounts and sort by percentage
+        allocations.forEach(item => {
+            item.amount = (item.percentage / 100) * amount;
+        });
+        allocations.sort((a, b) => b.percentage - a.percentage);
+
+        // Limit to the number of investments specified
+        allocations = allocations.slice(0, numInvestments);
+
+        // Recalculate percentages to total 100%
+        const totalPercentage = allocations.reduce((sum, item) => sum + item.percentage, 0);
+        allocations.forEach(item => {
+            item.percentage = (item.percentage / totalPercentage) * 100;
+            item.amount = (item.percentage / 100) * amount;
+        });
+
+        displayRecommendations(allocations);
+    }
+
+    function displayRecommendations(recommendations) {
+        const tableBody = document.querySelector('#recommendationsTable tbody');
+        tableBody.innerHTML = '';
+        recommendations.forEach(item => {
+            const row = tableBody.insertRow();
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td class="text-end">${item.percentage.toFixed(2)}%</td>
+                <td class="text-end">${item.amount.toFixed(2)}</td>
+                <td>${item.risk}</td>
+                <td>${item.popularity}</td>
+            `;
+        });
+
+        document.getElementById('recommendationsSection').style.display = 'block';
+
+        // Update or create chart
+        const ctx = document.getElementById('recommendationsChart').getContext('2d');
+        
+        if (recommendationsChart) {
+            // Update existing chart
+            recommendationsChart.data.labels = recommendations.map(item => item.name);
+            recommendationsChart.data.datasets[0].data = recommendations.map(item => item.percentage);
+            recommendationsChart.update();
+        } else {
+            // Create new chart
+            recommendationsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: recommendations.map(item => item.name),
+                    datasets: [{
+                        label: 'Allocation %',
+                        data: recommendations.map(item => item.percentage),
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Percentage'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    // Make sure to call calculateRecommendations() when inputs change
+    document.querySelectorAll('input, select').forEach(input => {
+        input.addEventListener('change', calculateRecommendations);
+    });
+
+    // Initial call to set up the chart and table
+    calculateRecommendations();
+</script>
+
+	<!-- /Service Details Section -->
+
+	<!-- javascript-->
+  
+	
+
+  
+	<!-- javascript-->
+  
+  <!-- Footer Start -->
+		<div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-xl-9">
+                        <div class="mb-5">
+                            <div class="row g-4">
+                                <div class="col-md-6 col-lg-6 col-xl-5">
+                                    <div class="footer-item">
+                                        <a href="index.html" class="p-0">
+                                            <h3 class="text-white"><i class="fab fa-slack me-3"></i> InvestClarity</h3>
+                                           <p class="text-white mb-4">Thank you for visiting InvestClarity! We hope our platform helps you make informed and confident investment decisions.</p>
+                                        <div class="footer-btn d-flex">
+                                            <a class="btn btn-md-square rounded-circle me-3" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                            <a class="btn btn-md-square rounded-circle me-3" href="https://x.com/?lang=en"><i class="fab fa-twitter"></i></a>
+                                            <a class="btn btn-md-square rounded-circle me-3" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                                            <a class="btn btn-md-square rounded-circle me-0" href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-3">
+                                    <div class="footer-item">
+                                        <h4 class="text-white mb-4">Useful Links</h4>
+                                        <a href="about.html"><i class="fas fa-angle-right me-2"></i> About Us</a>
+                                        <a href="index.html"><i class="fas fa-angle-right me-2"></i> Features</a>
+                                        <a href="service.html"><i class="fas fa-angle-right me-2"></i> Services</a>                                     
+                                        <a href="contact.html"><i class="fas fa-angle-right me-2"></i> Contact</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-4">
+                                    <div class="footer-item">
+                                        <h4 class="mb-4 text-white">Service Icons</h4>
+                                        <div class="row g-3">
+                                            <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\diagram.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\diagram.png" data-lightbox="footerInstagram-1" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                           <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\diversity.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\diversity.png" data-lightbox="footerInstagram-2" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                            <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\secured.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\secured.png" data-lightbox="footerInstagram-3" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                            <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\rupees.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\rupees.png" data-lightbox="footerInstagram-4" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                            <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\debt.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\debt.png" data-lightbox="footerInstagram-5" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                           <div class="col-4">
+                                                <div class="footer-instagram rounded">
+                                                    <img src="img\people.png" class="img-fluid w-100" alt="">
+                                                    <div class="footer-search-icon">
+                                                        <a href="img\people.png" data-lightbox="footerInstagram-6" class="my-auto"><i class="fas fa-link text-white"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                     
+                    </div>
+                    
+                    <div class="col-xl-3">
+                        <div class="footer-item">
+                            <div class="col-lg-4">
+                <div class="message-form">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="8d7bc842-68d2-4b07-ad49-d1e5ebca1c4c">
+                        <h3 style="color:white">Please mention your feedback here</h3>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="message" placeholder="Your feedback or quries" required>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <!-- Footer End -->
+        
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6 text-center text-md-end mb-md-0">
+                        <span class="text-body"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>InvestClarity</a>, All right reserved.</span>
+                    </div>
+                    <div class="col-md-6 text-center text-md-start text-body">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        
+        <!-- JavaScript Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+    </body>
+
+</html>
